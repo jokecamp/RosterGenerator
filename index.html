@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <link href="main.css" media="all" rel="stylesheet" type="text/css" /> -->
+</head>
+<body>
+
+  <h1>Lineup</h1>
+  <ol id="roster">
+    <li><input type="text" value="Wayne Rooney" /></li>
+    <li><input type="text" value="Ryan Giggs"/></li>
+    <li><input type="text" /></li>
+    <li><input type="text" value="Paul Scholes" /></li>
+    <li><input type="text" /></li>
+    <li><input type="text" /></li>
+    <li><input type="text" /></li>
+    <li><input type="text" /></li>
+    <li><input type="text" /></li>
+    <li><input type="text" /></li>
+    <li><input type="text" /></li>
+  </ol>
+  <input type="button" value="Save" id="save" />
+  <ul id="existing"></ul>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+    <script>
+        var fb = new Firebase("https://resplendent-fire-8202.firebaseio.com/rosters");
+
+        var saveRoster = function() {
+          var players = [];
+          var textboxes = $("#roster input").each(function( index ) {
+              players.push($( this ).val());
+          });
+
+          
+          fb.push(players);
+        };
+
+        $(function() {
+            $("#save").click(saveRoster);
+
+            fb.on("child_added", function(data) {
+              var players = data.val();
+              console.log(players);              
+            });
+
+        });
+
+        
+
+
+    </script>
+</body>
+</html>
