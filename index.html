@@ -10,51 +10,28 @@
 <body>
 
   <h1>Lineup</h1>
+  Roster Name: <input type="text" value="Untitled XI" id="teamname" /><br>
+  Manager Name:<input type="text" value="jokecamp" id="username" />
+  <span>Your username and roster name will be used to generate a link to share you team.
   <ol id="roster">
     <li><input type="text" value="Wayne Rooney" /></li>
     <li><input type="text" value="Ryan Giggs"/></li>
-    <li><input type="text" /></li>
+    <li><input type="text" value="Robin Van Persie"/></li>
     <li><input type="text" value="Paul Scholes" /></li>
-    <li><input type="text" /></li>
-    <li><input type="text" /></li>
-    <li><input type="text" /></li>
-    <li><input type="text" /></li>
-    <li><input type="text" /></li>
-    <li><input type="text" /></li>
-    <li><input type="text" /></li>
+    <li><input type="text" value="Juan Mata"/></li>
+    <li><input type="text" value="Antonio Valencia"/></li>
+    <li><input type="text" value="Patrice Evra"/></li>
+    <li><input type="text" value="Johnny Evans"/></li>
+    <li><input type="text" value="Chris Smalling"/></li>
+    <li><input type="text" value="Rafael"/></li>
+    <li><input type="text" value="De Gae"/></li>
   </ol>
   <input type="button" value="Save" id="save" />
+  
   <ul id="existing"></ul>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-
-    <script>
-        var fb = new Firebase("https://resplendent-fire-8202.firebaseio.com/rosters");
-
-        var saveRoster = function() {
-          var players = [];
-          var textboxes = $("#roster input").each(function( index ) {
-              players.push($( this ).val());
-          });
-
-          
-          fb.push(players);
-        };
-
-        $(function() {
-            $("#save").click(saveRoster);
-
-            fb.on("child_added", function(data) {
-              var players = data.val();
-              console.log(players);              
-            });
-
-        });
-
-        
-
-
-    </script>
+    <script src="roster.js"></script>
 </body>
 </html>
